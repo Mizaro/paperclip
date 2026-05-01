@@ -1,6 +1,6 @@
 services:
   paperclip:
-    image: "${PAPERCLIP_IMAGE:-ghcr.io/mizaro/paperclip:0.3.1}"
+    image: "${PAPERCLIP_IMAGE:-ghcr.io/mizaro/paperclip:latest}"
     pull_policy: always
     restart: unless-stopped
     ports:

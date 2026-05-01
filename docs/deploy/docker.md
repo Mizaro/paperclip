@@ -16,13 +16,13 @@ Open [http://localhost:3100](http://localhost:3100).
 Defaults:
 
 - Host port: `3100`
-- Image: `ghcr.io/mizaro/paperclip:0.3.1`
+- Image: `ghcr.io/mizaro/paperclip:latest`
 - Data volume: `paperclip-data`
 
 Override with environment variables:
 
 ```sh
-PAPERCLIP_IMAGE=ghcr.io/mizaro/paperclip:0.3.1 PAPERCLIP_PORT=3200 \
+PAPERCLIP_IMAGE=ghcr.io/mizaro/paperclip:latest PAPERCLIP_PORT=3200 \
   docker compose -f docker/docker-compose.quickstart.yml up -d
 ```
 
