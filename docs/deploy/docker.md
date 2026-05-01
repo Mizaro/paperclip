@@ -8,7 +8,7 @@ Run Paperclip in Docker without installing Node or pnpm locally.
 ## Compose Quickstart (Recommended)
 
 ```sh
-docker compose -f docker/docker-compose.quickstart.yml up --build
+docker compose -f docker/docker-compose.quickstart.yml up -d
 ```
 
 Open [http://localhost:3100](http://localhost:3100).
@@ -16,16 +16,17 @@ Open [http://localhost:3100](http://localhost:3100).
 Defaults:
 
 - Host port: `3100`
-- Data directory: `./data/docker-paperclip`
+- Image: `ghcr.io/mizaro/paperclip:0.3.1`
+- Data volume: `paperclip-data`
 
 Override with environment variables:
 
 ```sh
-PAPERCLIP_PORT=3200 PAPERCLIP_DATA_DIR=../data/pc \
-  docker compose -f docker/docker-compose.quickstart.yml up --build
+PAPERCLIP_IMAGE=ghcr.io/mizaro/paperclip:0.3.1 PAPERCLIP_PORT=3200 \
+  docker compose -f docker/docker-compose.quickstart.yml up -d
 ```
 
-**Note:** `PAPERCLIP_DATA_DIR` is resolved relative to the compose file (`docker/`), so `../data/pc` maps to `data/pc` in the project root.
+This compose file is registry-driven so platforms like Coolify can deploy it directly without building from source. Configure registry credentials in Coolify if the image is private.
 
 ## Manual Docker Build
 
@@ -41,7 +42,7 @@ docker run --name paperclip \
 
 ## Data Persistence
 
-All data is persisted under the bind mount (`./data/docker-paperclip`):
+All data is persisted under the Docker volume mounted at `/paperclip`:
 
 - Embedded PostgreSQL data
 - Uploaded assets

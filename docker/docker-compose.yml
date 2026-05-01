@@ -16,9 +16,9 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   server:
-    build:
-      context: ..
-      dockerfile: Dockerfile
+    image: "${PAPERCLIP_IMAGE:-ghcr.io/mizaro/paperclip:0.3.1}"
+    pull_policy: always
+    restart: unless-stopped
     ports:
       - "3100:3100"
     environment:
